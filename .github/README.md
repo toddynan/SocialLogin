@@ -18,7 +18,7 @@ Pequeno projeto que cria um sistema de login pelo Google na aplicação.
 <br>
 
 <p align="center">
-  <img alt="logo-google" src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_272x92dp.png" width="50%">
+  <img alt="logo-google" src="https://www.google.com.br/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" width="50%">
 </p>
 
 ## 🚀 Tecnologias
