@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Login</title>
+
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+    <!--importando a biblioteca JWT Decode-->
+    <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
+
+    <script>
+        // função que trabalha com as respostas que o google vai dar
+        function handleCredentialResponse(response) {
+            //usar a biblioteca JWT Decode
+            // dentro do response que vamos receber do google após o login, teremos uma credencial JWT
+            // essa credencial vem codificada e precisamos decodificá-la para ter acesso às infos
+            const data = jwt_decode(response.credential)
+            console.log(data)
+
+            // adicionando conteúdo pelo id
+            fullName.textContent = data.name
+            sub.textContent = data.sub
+            givenName.textContent = data.given_name
+            familyName.textContent = data.family_name
+            email.textContent = data.email
+            verifiedEmail.textContent = data.email_verified
+            picture.setAttribute("src", data.picture)
+
+        }
+
+        // gerando o botão
+        // assim que a página carregar
+        window.onload = function () {
+            
+            //inicializa as configurações do nosso login. fazer as configs que fizemos bater com o código
+          google.accounts.id.initialize({
+            client_id: "773838914240-1ke4rvdi2f3v9su7tm31m1a69o7r9def.apps.googleusercontent.com",
+            //função que vai receber as credenciais quando a pessoa fizer o login pelo google
+            callback: handleCredentialResponse
+          });
+
+          // customization attributes no botão
+          google.accounts.id.renderButton(
+            document.getElementById("buttonDiv"), {
+                theme: "filled_black",
+                size: "large", 
+                type: "standard",
+                shape: "pill",
+                text: "continue_with.",
+                locale: "en-US",
+                logo_alignment: "left"
+            }  
+          );
+
+          // também aparece se usar o One Tap dialog (outro tipo de login do google)
+          // porém, não dá para fazer testes se não tiver um domínio SSL (s dps do http)
+          // o localhost não tem SSL
+          google.accounts.id.prompt(); 
+        }
+    </script>
+
+</head>
+
+<body>
+    <div id="buttonDiv"></div>
+
+    <p id="fullName"></p>
+    <p id="sub"></p>
+    <p id="givenName"></p>
+    <p id="familyName"></p>
+    <p id="email"></p>
+    <p id="verifiedEmail"></p>
+    <img id="picture" />
+</body>
+
+</html>
