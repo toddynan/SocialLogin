@@ -34,7 +34,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 O Social Login é um protótipo que cria um sistema de login com o Google na aplicação WEB desejada.
 
-Você pode ter acesso ao projeto online [clicando aqui](https://toddynan.github.io/).
+Você pode ter acesso ao projeto online [clicando aqui](https://toddynan.github.io/SocialLogin).
 
 ## :memo: Licença
 
